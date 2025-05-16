@@ -6,13 +6,20 @@ from .models import User, Team, Activity, Leaderboard, Workout
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    base_url = 'http://localhost:8000/'
+    # Replace with your actual Codespace name or set dynamically
+    codespace_url = 'https://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev/'
+    local_url = 'http://localhost:8000/'
     return Response({
-        'users': base_url + 'api/users/?format=api',
-        'teams': base_url + 'api/teams/?format=api',
-        'activities': base_url + 'api/activities/?format=api',
-        'leaderboard': base_url + 'api/leaderboard/?format=api',
-        'workouts': base_url + 'api/workouts/?format=api'
+        'users': codespace_url + 'api/users/?format=api',
+        'teams': codespace_url + 'api/teams/?format=api',
+        'activities': codespace_url + 'api/activities/?format=api',
+        'leaderboard': codespace_url + 'api/leaderboard/?format=api',
+        'workouts': codespace_url + 'api/workouts/?format=api',
+        'users_local': local_url + 'api/users/?format=api',
+        'teams_local': local_url + 'api/teams/?format=api',
+        'activities_local': local_url + 'api/activities/?format=api',
+        'leaderboard_local': local_url + 'api/leaderboard/?format=api',
+        'workouts_local': local_url + 'api/workouts/?format=api',
     })
 
 class UserViewSet(viewsets.ModelViewSet):
